@@ -1,0 +1,4 @@
+source https://pkgs.dev.azure.com/sdl/_packaging/SDLNuget/nuget/v3/index.json
+source https://api.nuget.org/v3/index.json
+
+nuget Sdl.PluginFramework 6.1.7 prerelease restriction: >= net48
