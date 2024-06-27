@@ -8,6 +8,11 @@ param(
 write-host "Sniffing dotnet app runtimes..."
 write-host "`$Force = $Force"
 
+$pluginLocation = "$env:LOCALAPPDATA\NuGet\CredentialProviders"
+
+# delete everyting in $pluginLocation
+Remove-Item "$pluginLocation\*" -Force -Recurse
+
 try {
     $dotnetruntimes = dotnet --list-runtimes
     $dotnetruntimes.Count
@@ -29,4 +34,4 @@ catch {
 
 & "$PSScriptRoot\InstallCredentialProvider.ps1" "Azure DevOps" "https://pkgs.dev.azure.com/sdl/_apis/public/nuget/client/CredentialProviderBundle.zip" "CredentialProviderBundle.zip" "CredentialProvider.VSS.exe" -Force:$Force.IsPresent
 
-& "$PSScriptRoot\InstallCredentialProvider.ps1" "Paket" "https://github.com/RWS/Paket.CredentialProvider.Gen2Support/releases/download/v.8.0.0/Paket.CredentialProvider.Gen2Support.zip" "Paket.CredentialProvider.Gen2Support.zip" "*" -Force:$Force.IsPresent
+#& "$PSScriptRoot\InstallCredentialProvider.ps1" "Paket" "https://github.com/RWS/Paket.CredentialProvider.Gen2Support/releases/download/v.8.0.0/Paket.CredentialProvider.Gen2Support.zip" "Paket.CredentialProvider.Gen2Support.zip" "*" -Force:$Force.IsPresent
